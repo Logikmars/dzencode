@@ -1,0 +1,60 @@
+@use "@/styles/vars" as *;
+
+.Text{
+    font-size: $fs_s;
+    color: $c_primary_grey;
+    font-family: 'Inter';
+    font-weight: $fs_m;
+
+
+
+    &_fs{
+        &_32{
+            font-size: $fs_xl;
+        }
+        &_24{
+            font-size: $fs_m;
+        }
+        &_14{
+            font-size: $fs_xs;
+        }
+        &_12{
+            font-size: 12px;
+        }
+        &_10{
+            font-size: 10px;
+        }
+    }
+
+    &_c{
+        &_green{
+            color: $c_primary_green;
+        }
+        &_ghost{
+            color: $c_primary_ghost;
+        }
+    }
+
+    &_fw{
+        &_xl{
+            font-weight: $fw_xl;
+        }
+        &_l{
+            font-weight: $fw_l;
+        }
+    }
+
+    &_title{
+        font-size: $fs_xl;
+        color: $c_primary_grey;
+        font-weight: $fw_xl;
+    }
+
+    &_underline{
+        text-decoration: underline;
+    }
+
+    &_tac{
+        text-align: center;
+    }
+}

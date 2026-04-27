@@ -3,22 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.cjs",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "node server.cjs --prod",
+    "lint": "eslint",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "docker:build": "docker build -t dzencode:local .",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down",
+    "docker:restart": "docker compose down && docker compose up -d --build",
+    "docker:logs": "docker compose logs -f app",
+    "docker:ps": "docker compose ps"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "i18next": "^26.0.8",
+    "lucide-react": "^1.11.0",
     "next": "16.2.4",
+    "pg": "^8.20.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-i18next": "^17.0.4",
+    "react-redux": "^9.2.0",
+    "sass": "^1.99.0",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.2.4"
   }
 }

@@ -1,0 +1,50 @@
+@use "@/styles/vars" as *;
+
+.Link{
+    position: relative;
+    width: min(100%, 168px);
+    padding: 12px 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: $c_primary_grey;
+    font-size: $fs_s;
+    font-weight: $fw_l;
+    transition: background-color 200ms, color 200ms, transform 200ms, box-shadow 200ms;
+
+    &::after{
+        content: '';
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 6px;
+        height: 4px;
+        border-radius: 999px;
+        background-color: $c_primary_green;
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 260ms ease, background-color 200ms;
+    }
+
+    &:hover{
+        color: $c_black;
+    }
+
+    &_active{
+        color: $c_black;
+    }
+
+    &_activeVisible{
+        &::after{
+            transform: scaleX(1);
+        }
+    }
+
+    &_text{
+        line-height: 1.2;
+        text-align: center;
+    }
+}

@@ -1,0 +1,36 @@
+.RealTime{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    @media(max-width: 950px){
+        align-items: center;
+    }
+    &_info{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media(max-width: 950px){
+            flex-direction: column;
+        }
+        gap: 12px;
+        &_meta{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            @media(max-width: 950px){
+                flex-direction: column;
+            }
+        }
+        &_sessions{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        &_oclock{
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    }
+}
