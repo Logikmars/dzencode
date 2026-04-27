@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useRef } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '@/store';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -17,16 +17,37 @@ function isLanguage(value: string): value is Language {
 const LanguageSync = ({ children }: PropsWithChildren) => {
     const dispatch = useAppDispatch();
     const language = useAppSelector((state) => state.language.current);
+    const hasInitializedLanguageRef = useRef(false);
+    const skipNextSyncRef = useRef(false);
 
     useEffect(() => {
+        if (hasInitializedLanguageRef.current) {
+            return;
+        }
+
+        hasInitializedLanguageRef.current = true;
         const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
 
         if (storedLanguage && isLanguage(storedLanguage) && storedLanguage !== language) {
+            skipNextSyncRef.current = true;
             dispatch(setLanguage(storedLanguage));
+            return;
         }
+
+        window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+        void i18n.changeLanguage(language);
     }, [dispatch, language]);
 
     useEffect(() => {
+        if (!hasInitializedLanguageRef.current) {
+            return;
+        }
+
+        if (skipNextSyncRef.current) {
+            skipNextSyncRef.current = false;
+            return;
+        }
+
         window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
         void i18n.changeLanguage(language);
     }, [language]);
